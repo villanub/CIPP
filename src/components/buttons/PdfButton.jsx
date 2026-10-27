@@ -1,7 +1,7 @@
 import React from 'react'
 import { CButton, CDropdownItem } from '@coreui/react'
 import jsPDF from 'jspdf'
-import 'jspdf-autotable'
+import { autoTable } from 'jspdf-autotable'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
@@ -34,7 +34,7 @@ function ExportPDFButton(props) {
     if (base64) {
       doc.addImage(base64, 'png', 20, 20, 120, 100)
     }
-    doc.autoTable(content)
+    autoTable(doc, content)
     doc.save(reportName + '.pdf')
   }
 

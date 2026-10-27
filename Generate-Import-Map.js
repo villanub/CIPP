@@ -10,10 +10,8 @@ const __dirname = path.dirname(__filename)
 // Adjust the relative path as necessary to point to your routes.json location
 const routesPath = path.join(__dirname, './src/routes.json') // Example path
 
-// Load routes.json with an import assertion for JSON
-const routes = await import(`file://${routesPath}`, { assert: { type: 'json' } }).then(
-  (module) => module.default,
-)
+// Read JSON directly so this script works across supported Node.js versions.
+const routes = JSON.parse(await fs.readFile(routesPath, 'utf8'))
 
 let importsMap = "import React from 'react'\n export const importsMap = {\n"
 
